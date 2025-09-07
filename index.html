@@ -40,13 +40,8 @@
     <div class="mx-auto max-w-7xl px-4 py-4 flex items-center justify-between gap-4">
       <h1 class="text-xl sm:text-2xl font-semibold tracking-tight">Mouse & Keyboard Tester</h1>
       <div class="flex items-center gap-3">
-        <label class="flex items-center gap-2 text-sm">
-          <input id="toggle-enabled" type="checkbox" class="size-4 accent-emerald-500" checked />
-          <span id="enabled-label">Тест включён</span>
-        </label>
         <button id="btn-reset" class="rounded-xl px-3 py-2 bg-slate-800 hover:bg-slate-700 text-sm">Очистить</button>
-        <button id="btn-export" class="rounded-xl px-3 py-2 bg-slate-800 hover:bg-slate-700 text-sm">Экспорт TXT</button>
-        <button id="btn-copy" class="rounded-xl px-3 py-2 bg-slate-800 hover:bg-slate-700 text-sm">Копировать</button>
+        <button id="btn-export" class="rounded-xl px-3 py-2 bg-slate-800 hover:bg-slate-700 text-sm">Экспорт</button>
         <button id="btn-theme" class="rounded-xl px-3 py-2 bg-slate-800 hover:bg-slate-700 text-sm">🌙 Светлая</button>
       </div>
     </div>
@@ -167,7 +162,19 @@
   </main>
 
   <footer class="mx-auto max-w-7xl px-4 pb-8 text-xs text-slate-500">
-    <p>v0.2 — фронтенд-MVP на чистом JS. Следующий шаг: тест клавиатуры (ghosting, KRO, latency), пресеты и общий отчёт.</p>
+    <p class="mb-4">v0.2 — фронтенд-MVP на чистом JS. Следующий шаг: тест клавиатуры (ghosting, KRO, latency), пресеты и общий отчёт.</p>
+    
+    <div class="space-y-4 text-sm">
+      <p>Этот тестер мыши позволяет проверить работу всех кнопок мыши, колеса прокрутки и обнаружить проблемы с двойными кликами и реверсами скролла. Прокрутите эту страницу, чтобы убедиться, что глобальный скролл работает нормально.</p>
+      
+      <p>При наведении курсора на область тестирования скролл страницы автоматически отключается, чтобы не мешать тестированию колеса мыши. Как только курсор покидает тестовую область, скролл страницы снова становится доступным.</p>
+      
+      <p>Вы можете настроить чувствительность двойного клика и окно реверса скролла в левой панели настроек. Все события записываются в логи с точным временем и могут быть экспортированы в текстовый файл для дальнейшего анализа.</p>
+      
+      <p>Переключайте между темной и светлой темой для комфортного использования в любое время суток. Ваш выбор темы сохраняется и восстанавливается при следующем посещении.</p>
+      
+      <p>Для тестирования скролла: попробуйте прокрутить эту страницу вне тестовой области - скролл должен работать нормально. Затем наведите курсор на тестовую область и попробуйте прокрутить - скролл страницы должен заблокироваться, но события колеса будут регистрироваться в тестере.</p>
+    </div>
   </footer>
 
   <script>
@@ -186,8 +193,6 @@
     let wheelIdleTimer = null;
 
     // ------- Elements -------
-    const elEnabled = document.getElementById('toggle-enabled');
-    const elEnabledLabel = document.getElementById('enabled-label');
     const elDblThreshold = document.getElementById('dbl-threshold');
     const elRevWindow = document.getElementById('reverse-window');
 
@@ -565,14 +570,13 @@
     testArea.addEventListener('touchend', () => { cursorInside = false; }, { passive: true });
     testArea.addEventListener('touchcancel', () => { cursorInside = false; }, { passive: true });
 
-    // Global wheel blocker — only prevent page scroll outside test area
+    // Global wheel blocker — only prevent page scroll when cursor is inside test area
     window.addEventListener('wheel', (e) => {
-      // If the event originates from within the test area, let it be handled locally
-      if (testArea.contains(e.target)) {
-        return; // Let the testArea wheel handler deal with it
+      // Only prevent page scroll if cursor is inside test area
+      if (cursorInside && testArea.contains(e.target)) {
+        e.preventDefault();
       }
-      // Otherwise, prevent page scroll
-      e.preventDefault();
+      // Otherwise, allow normal page scrolling
     }, { passive: false });
 
     // Block keyboard-based scrolling while focus is in test area
