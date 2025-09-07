@@ -119,9 +119,9 @@
       <div class="rounded-2xl bg-slate-900 border border-slate-800 p-4">
         <h2 class="text-lg font-semibold mb-3">Статистика</h2>
         <ul class="space-y-2 text-sm">
-          <li class="flex items-center justify-between"><span>Даббл-клики LMB:</span><span id="dbl-lmb" class="font-mono">0</span></li>
-          <li class="flex items-center justify-between"><span>Даббл-клики MMB:</span><span id="dbl-mmb" class="font-mono">0</span></li>
-          <li class="flex items-center justify-between"><span>Даббл-клики RMB:</span><span id="dbl-rmb" class="font-mono">0</span></li>
+          <li class="flex items-center justify-between"><span>Даббл-клики ЛКМ:</span><span id="dbl-lmb" class="font-mono">0</span></li>
+          <li class="flex items-center justify-between"><span>Даббл-клики СКМ:</span><span id="dbl-mmb" class="font-mono">0</span></li>
+          <li class="flex items-center justify-between"><span>Даббл-клики ПКМ:</span><span id="dbl-rmb" class="font-mono">0</span></li>
           <li class="flex items-center justify-between"><span>Кол-во шагов колеса:</span><span id="wheel-total" class="font-mono">0</span></li>
           <li class="flex items-center justify-between"><span>Реверсы колеса:</span><span id="wheel-rev" class="font-mono">0</span></li>
         </ul>
@@ -231,6 +231,8 @@
     const lastDown = { 0: 0, 1: 0, 2: 0 }; // per-button last mousedown time
     const lastWheel = { t: 0, sign: 0 };
     let wheelIdleTimer = null;
+    let reversalNotificationActive = false; // флаг для предотвращения множественных уведомлений
+    let doubleClickNotificationActive = false; // флаг для предотвращения множественных уведомлений двойного клика
 
     // Переводы
     const translations = {
@@ -400,6 +402,72 @@
     // ------- Utils -------
     const now = () => Date.now();
     const fmtTime = (ms) => new Date(ms).toLocaleTimeString(currentLang === 'ru' ? 'ru-RU' : 'en-US', { hour12: false });
+
+    function showDoubleClickNotification(buttonLabel) {
+      if (doubleClickNotificationActive) return; // не показываем если уже активно
+      
+      doubleClickNotificationActive = true;
+      const t = translations[currentLang];
+      
+      // Создаем специальное уведомление в центре зоны теста
+      const notification = document.createElement('div');
+      notification.className = 'absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-6 py-3 bg-red-600 text-white rounded-xl text-lg font-bold shadow-2xl z-20 opacity-0 scale-50 transition-all duration-300';
+      notification.textContent = `${t.doubleClick} ${buttonLabel}!`;
+      notification.id = 'doubleclick-notification';
+      
+      testArea.appendChild(notification);
+      
+      // Анимация появления
+      setTimeout(() => {
+        notification.classList.remove('opacity-0', 'scale-50');
+        notification.classList.add('opacity-100', 'scale-100');
+      }, 10);
+      
+      // Убираем уведомление через 1.5 секунды
+      setTimeout(() => {
+        notification.classList.add('opacity-0', 'scale-50');
+        setTimeout(() => {
+          const existingNotification = document.getElementById('doubleclick-notification');
+          if (existingNotification) {
+            existingNotification.remove();
+          }
+          doubleClickNotificationActive = false;
+        }, 300);
+      }, 1500);
+    }
+
+    function showReversalNotification() {
+      if (reversalNotificationActive) return; // не показываем если уже активно
+      
+      reversalNotificationActive = true;
+      const t = translations[currentLang];
+      
+      // Создаем специальное уведомление в центре зоны теста
+      const notification = document.createElement('div');
+      notification.className = 'absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-6 py-3 bg-orange-600 text-white rounded-xl text-lg font-bold shadow-2xl z-20 opacity-0 scale-50 transition-all duration-300';
+      notification.textContent = t.wheelReversal;
+      notification.id = 'reversal-notification';
+      
+      testArea.appendChild(notification);
+      
+      // Анимация появления
+      setTimeout(() => {
+        notification.classList.remove('opacity-0', 'scale-50');
+        notification.classList.add('opacity-100', 'scale-100');
+      }, 10);
+      
+      // Убираем уведомление через 1.5 секунды
+      setTimeout(() => {
+        notification.classList.add('opacity-0', 'scale-50');
+        setTimeout(() => {
+          const existingNotification = document.getElementById('reversal-notification');
+          if (existingNotification) {
+            existingNotification.remove();
+          }
+          reversalNotificationActive = false;
+        }, 300);
+      }, 1500);
+    }
 
     function showNotification(message, type = 'default') {
       const notification = document.createElement('div');
@@ -739,9 +807,8 @@
       if (prev && delta <= dblThresholdMs) {
         const label = buttonLabel(btn);
         doubleCounts[label]++;
-        pushLog({ t, type: 'double-click', details: { button: label, deltaMs: delta } });
-        const tr = translations[currentLang];
-        showNotification(`${tr.doubleClick} ${label}!`, 'doubleclick');
+        // Не добавляем двойной клик в логи, только показываем уведомление в зоне теста
+        showDoubleClickNotification(label);
         updateStats();
       } else {
         pushLog({ t, type: 'click-down', details: { button: buttonLabel(btn) } });
@@ -780,19 +847,9 @@
           event = log.details.button;
           details = t.mouseUp;
           break;
-        case 'double-click':
-          event = log.details.button;
-          details = `${t.doubleClick} (${log.details.deltaMs}${t.ms})`;
-          isSpecial = true; // выделяем двойные клики
-          break;
         case 'wheel':
           event = currentLang === 'ru' ? 'Колесо' : 'Wheel';
           details = log.details.dir === 'up' ? t.wheelUp : t.wheelDown;
-          break;
-        case 'wheel-reversal':
-          event = currentLang === 'ru' ? 'Колесо' : 'Wheel';
-          details = t.wheelReversal;
-          isSpecial = true; // выделяем реверсы
           break;
         case 'info':
           event = currentLang === 'ru' ? 'Система' : 'System';
@@ -823,9 +880,8 @@
       const since = t - last.t;
       if (last.sign !== 0 && sign !== 0 && sign !== last.sign && since <= reverseWindowMs) {
         wheelStats.reversals++;
-        pushLog({ t, type: 'wheel-reversal', details: { sinceMs: since, from: last.sign > 0 ? 'down' : 'up', to: dir, deltaY: e.deltaY } });
-        const tr = translations[currentLang];
-        showNotification(`${tr.wheelReversal}! (${since}${tr.ms})`, 'reversal');
+        // Не добавляем реверс в логи, только показываем уведомление в зоне теста
+        showReversalNotification();
         updateStats();
       } else if (sign !== 0) {
         pushLog({ t, type: 'wheel', details: { dir, deltaY: e.deltaY } });
