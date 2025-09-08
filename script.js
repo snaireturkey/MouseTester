@@ -321,12 +321,15 @@ function updateInterface() {
   }
   
   // Обновляем подсказки (теперь они в последней сетке)
-  const hints = document.querySelectorAll('#test-area .bg-slate-800\\/50 .grid div');
-  if (hints.length >= 4) {
-    hints[0].innerHTML = `💡 <strong>${t.hintLeftButton}</strong> ${t.hintLeftText}`;
-    hints[1].innerHTML = `💡 <strong>${t.hintMiddleButton}</strong> ${t.hintMiddleText}`;
-    hints[2].innerHTML = `💡 <strong>${t.hintRightButton}</strong> ${t.hintRightText}`;
-    hints[3].innerHTML = `💡 <strong>${t.hintWheel}</strong> ${t.hintWheelText}`;
+  const hintsContainer = document.querySelector('#test-area .grid.grid-cols-1.sm\\:grid-cols-2 ');
+  if (hintsContainer) {
+    const hints = hintsContainer.querySelectorAll('div');
+    if (hints.length >= 4) {
+      hints[0].innerHTML = `💡 <strong>${t.hintLeftButton}</strong> ${t.hintLeftText}`;
+      hints[1].innerHTML = `💡 <strong>${t.hintMiddleButton}</strong> ${t.hintMiddleText}`;
+      hints[2].innerHTML = `💡 <strong>${t.hintRightButton}</strong> ${t.hintRightText}`;
+      hints[3].innerHTML = `💡 <strong>${t.hintWheel}</strong> ${t.hintWheelText}`;
+    }
   }
   
   // Обновляем индикаторы кнопок мыши
