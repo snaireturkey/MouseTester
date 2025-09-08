@@ -17,106 +17,49 @@
       }
     }
   </script>
-  <style>
-    /* Темная тема (по умолчанию) */
-    body {
-      background-color: rgb(2 6 23);
-      color: rgb(226 232 240);
-    }
-    
-    /* Светлая тема */
-    body.light-theme {
-      background-color: rgb(248 250 252) !important;
-      color: rgb(15 23 42) !important;
-    }
-    
-    /* Основные фоны для светлой темы */
-    body.light-theme .bg-slate-950 { background-color: rgb(248 250 252) !important; }
-    body.light-theme .bg-slate-900 { background-color: rgb(226 232 240) !important; }
-    body.light-theme .bg-slate-800 { background-color: rgb(203 213 225) !important; }
-    body.light-theme .bg-slate-700 { background-color: rgb(148 163 184) !important; }
-    body.light-theme .bg-slate-600 { background-color: rgb(71 85 105) !important; }
-    
-    /* Фоны с прозрачностью для светлой темы */
-    body.light-theme .bg-slate-800\/50 { background-color: rgb(203 213 225 / 0.5) !important; }
-    body.light-theme .bg-slate-800\/60 { background-color: rgb(203 213 225 / 0.6) !important; }
-    body.light-theme .bg-emerald-900\/10 { background-color: rgb(6 95 70 / 0.1) !important; }
-    body.light-theme .bg-red-900\/20 { background-color: rgb(127 29 29 / 0.2) !important; }
-    
-    /* Границы для светлой темы */
-    body.light-theme .border-slate-800 { border-color: rgb(203 213 225) !important; }
-    body.light-theme .border-slate-700 { border-color: rgb(148 163 184) !important; }
-    body.light-theme .border-slate-800\/60 { border-color: rgb(203 213 225 / 0.6) !important; }
-    body.light-theme .border-emerald-500 { border-color: rgb(34 197 94) !important; }
-    
-    /* Цвета текста для светлой темы */
-    body.light-theme .text-slate-200 { color: rgb(15 23 42) !important; }
-    body.light-theme .text-slate-300 { color: rgb(51 65 85) !important; }
-    body.light-theme .text-slate-400 { color: rgb(71 85 105) !important; }
-    body.light-theme .text-slate-500 { color: rgb(100 116 139) !important; }
-    body.light-theme .text-red-300 { color: rgb(220 38 38) !important; }
-    body.light-theme .text-red-400 { color: rgb(220 38 38) !important; }
-    
-    /* Hover эффекты для светлой темы */
-    body.light-theme .hover\:bg-slate-700:hover { background-color: rgb(148 163 184) !important; }
-    body.light-theme .hover\:bg-slate-800:hover { background-color: rgb(148 163 184) !important; }
-    
-    /* Кольца фокуса для светлой темы */
-    body.light-theme .ring-emerald-500\/50 { --tw-ring-color: rgb(34 197 94 / 0.5) !important; }
-    body.light-theme .focus\:ring-emerald-500:focus { --tw-ring-color: rgb(34 197 94) !important; }
-    body.light-theme .ring-2 { --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color); --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color); box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000); }
-    
-    /* Дополнительные специфичные селекторы */
-    body.light-theme header { border-color: rgb(203 213 225) !important; }
-    body.light-theme main { color: rgb(15 23 42) !important; }
-    body.light-theme section { color: rgb(15 23 42) !important; }
-    body.light-theme button { color: rgb(15 23 42) !important; }
-    body.light-theme input { background-color: rgb(203 213 225) !important; border-color: rgb(148 163 184) !important; color: rgb(15 23 42) !important; }
-    body.light-theme table { color: rgb(15 23 42) !important; }
-    body.light-theme th { color: rgb(71 85 105) !important; }
-    body.light-theme td { color: rgb(51 65 85) !important; }
-  </style>
 </head>
-<body class="font-sans h-full">
-  <header class="border-b border-slate-800">
-    <div class="mx-auto max-w-7xl px-4 py-4 flex items-center justify-between gap-4">
+<body class="font-sans h-full bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-200">
+  <header class="border-b border-slate-200 dark:border-slate-800">
+    <div class="mx-auto max-w-screen-xl px-4 py-4 flex items-center justify-between gap-4">
       <h1 class="text-xl sm:text-2xl font-semibold tracking-tight">Mouse & Keyboard Tester</h1>
       <div class="flex items-center gap-3">
-        <button id="btn-mode" class="rounded-xl px-3 py-2 bg-slate-800 hover:bg-slate-700 text-sm">🖱️ Мышь</button>
-        <button id="btn-reset" class="rounded-xl px-3 py-2 bg-slate-800 hover:bg-slate-700 text-sm">🗑️ Очистить</button>
-        <button id="btn-export" class="rounded-xl px-3 py-2 bg-slate-800 hover:bg-slate-700 text-sm">📥 Экспорт</button>
-        <button id="btn-theme" class="rounded-xl px-3 py-2 bg-slate-800 hover:bg-slate-700 text-sm">☀️ Светлая</button>
-        <button id="btn-lang" class="rounded-xl px-3 py-2 bg-slate-800 hover:bg-slate-700 text-sm">🇷🇺 Русский</button>
+        <button id="btn-reset" class="rounded-xl px-3 py-2 bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-sm">🗑️ Очистить</button>
+        <button id="btn-export" class="rounded-xl px-3 py-2 bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-sm">📥 Экспорт</button>
+        <button id="btn-theme" class="rounded-xl px-3 py-2 bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-sm">☀️ Светлая</button>
+        <button id="btn-lang" class="rounded-xl px-3 py-2 bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-sm">🇷🇺 Русский</button>
       </div>
     </div>
     <!-- Top Ad Slot -->
-    <div class="mx-auto max-w-7xl px-4 pb-4">
-      <div class="w-full min-h-16 sm:min-h-20 md:min-h-24 rounded-xl bg-slate-800/60 flex items-center justify-center text-slate-400 text-xs">
+    <div class="mx-auto max-w-screen-xl px-4 pb-4">
+      <div class="w-full min-h-16 sm:min-h-20 md:min-h-24 rounded-xl bg-slate-200/60 dark:bg-slate-800/60 flex items-center justify-center text-slate-500 dark:text-slate-400 text-xs">
         Рекламный баннер (728x90 / адаптивный)
       </div>
     </div>
   </header>
 
-  <main class="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-4 p-4">
+  <!-- Screen reader announcements -->
+  <div id="sr-announcements" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+  <main class="mx-auto max-w-screen-xl grid grid-cols-1 lg:grid-cols-12 gap-4 p-4">
     <!-- Controls -->
     <section class="lg:col-span-3 space-y-4">
-      <div class="rounded-2xl bg-slate-900 border border-slate-800 p-4">
+      <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4">
         <h2 class="text-lg font-semibold mb-3">Параметры</h2>
         <div class="space-y-4">
           <div>
-            <label class="text-sm text-slate-300">Порог двойного клика (мс)</label>
-            <input id="dbl-threshold" type="number" min="50" max="500" step="10" value="70" class="mt-1 w-full rounded-xl bg-slate-800 border border-slate-700 px-3 py-2" />
-            <p class="text-xs text-slate-400 mt-1">Максимальный интервал между кликами для регистрации двойного клика. Стандартно: 150-250мс.</p>
+            <label class="text-sm text-slate-600 dark:text-slate-300">Порог двойного клика (мс)</label>
+            <input id="dbl-threshold" type="number" min="50" max="500" step="10" value="70" class="mt-1 w-full rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 px-3 py-2 text-slate-900 dark:text-slate-200" />
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Максимальный интервал между кликами для регистрации двойного клика. Стандартно: 150-250мс.</p>
           </div>
           <div>
-            <label class="text-sm text-slate-300">Окно реверса колеса (мс)</label>
-            <input id="reverse-window" type="number" min="20" max="200" step="5" value="80" class="mt-1 w-full rounded-xl bg-slate-800 border border-slate-700 px-3 py-2" />
-            <p class="text-xs text-slate-400 mt-1">Если направление меняется быстрее этого окна — фиксируем реверс.</p>
+            <label class="text-sm text-slate-600 dark:text-slate-300">Окно реверса колеса (мс)</label>
+            <input id="reverse-window" type="number" min="20" max="200" step="5" value="80" class="mt-1 w-full rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 px-3 py-2 text-slate-900 dark:text-slate-200" />
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Если направление меняется быстрее этого окна — фиксируем реверс.</p>
           </div>
         </div>
       </div>
 
-      <div class="rounded-2xl bg-slate-900 border border-slate-800 p-4">
+      <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4">
         <h2 class="text-lg font-semibold mb-3">Статистика</h2>
         <ul class="space-y-2 text-sm">
           <li class="flex items-center justify-between"><span>Даббл-клики ЛКМ:</span><span id="dbl-lmb" class="font-mono">0</span></li>
@@ -128,8 +71,8 @@
       </div>
 
       <!-- Sidebar Ad Slot -->
-      <div class="rounded-2xl bg-slate-900 border border-slate-800 p-4">
-        <div class="w-full min-h-48 rounded-xl bg-slate-800/60 flex items-center justify-center text-slate-400 text-xs">
+      <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4">
+        <div class="w-full min-h-48 rounded-xl bg-slate-200/60 dark:bg-slate-800/60 flex items-center justify-center text-slate-500 dark:text-slate-400 text-xs">
           Рекламный блок (300x250 / адаптивный)
         </div>
       </div>
@@ -138,38 +81,38 @@
     <!-- Test Area -->
     <section class="lg:col-span-6 space-y-4">
       <div id="test-area" tabindex="0"
-           class="rounded-2xl border border-slate-800 bg-slate-900 p-4 outline-none focus:ring-2 focus:ring-emerald-500 min-h-[360px] select-none relative">
+           class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 outline-none focus:ring-2 focus:ring-emerald-500 min-h-[360px] select-none relative">
         <h2 class="text-lg font-semibold mb-3 text-center">Зона теста мыши</h2>
-        <p class="text-sm text-slate-400 mb-4 text-center">Кликайте ЛКМ/СКМ/ПКМ и прокручивайте колесо. Контекстное меню и автоскролл отключены внутри этой зоны.</p>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mb-4 text-center">Кликайте ЛКМ/СКМ/ПКМ и прокручивайте колесо. Контекстное меню и автоскролл отключены внутри этой зоны.</p>
 
         <!-- Notification Area -->
         <div id="notification-area" class="absolute top-4 right-4 space-y-2 pointer-events-none z-10"></div>
 
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <div id="ind-lmb" class="rounded-2xl border p-4 flex items-center justify-between border-slate-800 bg-slate-900">
+          <div id="ind-lmb" class="rounded-2xl border p-4 flex items-center justify-between border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900">
             <span class="font-medium">ЛКМ</span>
-            <span class="size-3 rounded-full bg-slate-700"></span>
+            <span class="size-3 rounded-full bg-slate-300 dark:bg-slate-700"></span>
           </div>
-          <div id="ind-mmb" class="rounded-2xl border p-4 flex items-center justify-between border-slate-800 bg-slate-900">
+          <div id="ind-mmb" class="rounded-2xl border p-4 flex items-center justify-between border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900">
             <span class="font-medium">СКМ</span>
-            <span class="size-3 rounded-full bg-slate-700"></span>
+            <span class="size-3 rounded-full bg-slate-300 dark:bg-slate-700"></span>
           </div>
-          <div id="ind-rmb" class="rounded-2xl border p-4 flex items-center justify-between border-slate-800 bg-slate-900">
+          <div id="ind-rmb" class="rounded-2xl border p-4 flex items-center justify-between border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900">
             <span class="font-medium">ПКМ</span>
-            <span class="size-3 rounded-full bg-slate-700"></span>
+            <span class="size-3 rounded-full bg-slate-300 dark:bg-slate-700"></span>
           </div>
         </div>
 
         <div class="mt-6 flex items-center justify-center">
           <div class="flex items-center gap-4">
-            <div id="arrow-up" class="size-8 border-2 border-slate-800 bg-slate-900 flex items-center justify-center text-xs font-mono rounded">↑</div>
+            <div id="arrow-up" class="size-8 border-2 border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 flex items-center justify-center text-xs font-mono rounded">↑</div>
             <span id="wheel-label" class="text-sm font-medium">Колесо</span>
-            <div id="arrow-down" class="size-8 border-2 border-slate-800 bg-slate-900 flex items-center justify-center text-xs font-mono rounded">↓</div>
+            <div id="arrow-down" class="size-8 border-2 border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 flex items-center justify-center text-xs font-mono rounded">↓</div>
           </div>
         </div>
         
         <!-- Hints moved to bottom -->
-        <div class="mt-4 text-xs text-slate-500 bg-slate-800/50 rounded-xl p-3">
+        <div class="mt-4 text-xs text-slate-500 dark:text-slate-500 bg-slate-200/50 dark:bg-slate-800/50 rounded-xl p-3">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
             <div>💡 <strong>Левая кнопка:</strong> быстро кликайте для теста двойного клика</div>
             <div>💡 <strong>Средняя кнопка:</strong> проверьте работу колесика как кнопки</div>
@@ -182,15 +125,15 @@
 
     <!-- Logs -->
     <section class="lg:col-span-3 space-y-4">
-      <div class="rounded-2xl bg-slate-900 border border-slate-800 p-4">
+      <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4">
         <h2 class="text-lg font-semibold mb-3 text-center">Логи</h2>
         <div class="h-[420px] overflow-y-auto overflow-x-hidden pr-2">
-          <table class="w-full text-sm table-fixed">
-            <thead class="sticky top-0 bg-slate-900">
-              <tr class="text-slate-400 border-b border-slate-800">
-                <th class="text-center font-medium py-2 w-20">Время</th>
+          <table class="w-full text-sm">
+            <thead class="sticky top-0 bg-white dark:bg-slate-900">
+              <tr class="text-slate-600 dark:text-slate-400 border-b border-slate-200 dark:border-slate-800">
+                <th class="text-center font-medium py-2 w-24">Время</th>
                 <th class="text-center font-medium py-2 w-24">Событие</th>
-                <th class="text-center font-medium py-2 break-words">Детали</th>
+                <th class="text-center font-medium py-2">Детали</th>
               </tr>
             </thead>
             <tbody id="log-body">
@@ -201,8 +144,8 @@
       </div>
 
       <!-- Advertisement Block -->
-      <div class="rounded-2xl bg-slate-900 border border-slate-800 p-4">
-        <div class="w-full min-h-48 rounded-xl bg-slate-800/60 flex items-center justify-center text-slate-400 text-xs">
+      <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4">
+        <div class="w-full min-h-48 rounded-xl bg-slate-100 dark:bg-slate-800/60 flex items-center justify-center text-slate-500 dark:text-slate-400 text-xs">
           Рекламный блок (300x250 / адаптивный)
         </div>
       </div>
@@ -210,753 +153,12 @@
   </main>
 
   <!-- Full-width separator -->
-  <div class="w-full border-t border-slate-800 mt-8"></div>
+  <div class="w-full border-t border-slate-200 dark:border-slate-800 mt-8"></div>
 
-  <footer class="mx-auto max-w-7xl px-4 pb-8 text-center text-sm text-slate-500 pt-8">
+  <footer class="mx-auto max-w-screen-xl px-4 pb-8 text-center text-sm text-slate-500 dark:text-slate-500 pt-8">
     <p>Все права защищены.<br>2025</p>
   </footer>
 
-  <script>
-    // ------- State -------
-    let dblThresholdMs = 70;
-    let reverseWindowMs = 80;
-    let isDarkTheme = true;
-    let currentLang = 'ru'; // ru или en
-    let testMode = 'mouse'; // mouse или keyboard
-
-    const logs = []; // newest first (limit 1000)
-    const doubleCounts = {}; // будет инициализироваться динамически
-    const wheelStats = { reversals: 0, total: 0 };
-
-    const lastDown = { 0: 0, 1: 0, 2: 0 }; // per-button last mousedown time
-    const lastWheel = { t: 0, sign: 0 };
-    let wheelIdleTimer = null;
-    let reversalNotificationActive = false; // флаг для предотвращения множественных уведомлений
-    let doubleClickNotificationActive = false; // флаг для предотвращения множественных уведомлений двойного клика
-
-    // Переводы
-    const translations = {
-      ru: {
-        title: 'Mouse & Keyboard Tester',
-        clear: '🗑️ Очистить',
-        export: '📥 Экспорт',
-        lightTheme: '☀️ Светлая',
-        darkTheme: '🌙 Темная',
-        lang: '🇷🇺 Русский',
-        modeMouseTest: '🖱️ Мышь',
-        modeKeyboardTest: '⌨️ Клавиатура',
-        doubleClickSpeed: 'Скорость двойного клика:',
-        ms: 'мс',
-        wheelSettings: 'Настройки колесика:',
-        reversalWindow: 'Окно обращения:',
-        mouseButtons: 'Кнопки мыши',
-        wheelScroll: 'Прокрутка колеса',
-        reversals: 'Обращения',
-        keyboard: 'Клавиатура',
-        logs: 'Логи (последние 1000)',
-        time: 'Время',
-        event: 'Событие', 
-        details: 'Детали',
-        noEvents: 'Нет событий — начните тест.',
-        leftClick: 'ЛКМ',
-        middleClick: 'СКМ',
-        rightClick: 'ПКМ',
-        mouseDown: 'Нажатие мыши',
-        mouseUp: 'Отпускание мыши',
-        doubleClick: 'Двойной клик',
-        wheelUp: 'Колесо вверх',
-        wheelDown: 'Колесо вниз',
-        wheelReversal: 'Реверс колеса',
-        keyDown: 'Нажатие клавиши',
-        keyUp: 'Отпускание клавиши',
-        adBlock: 'Рекламный блок (300x250 / адаптивный)',
-        topBanner: 'Рекламный баннер (728x90 / адаптивный)',
-        exportTitle: 'Отчет тестирования мыши',
-        exportDate: 'Дата:',
-        exportStats: 'СТАТИСТИКА:',
-        exportDoubleClicks: 'Двойные клики',
-        exportWheelSteps: 'Шагов колеса:',
-        exportWheelReversals: 'Реверсы колеса:',
-        exportReversalRate: 'Доля реверсов:',
-        exportLogs: 'ЛОГИ СОБЫТИЙ:',
-        parameters: 'Параметры',
-        statistics: 'Статистика', 
-        testZone: 'Зона теста мыши',
-        testZoneDescription: 'Кликайте ЛКМ/СКМ/ПКМ и прокручивайте колесо. Контекстное меню и автоскролл отключены внутри этой зоны.',
-        footer: 'Все права защищены.<br>2025',
-        doubleClickThreshold: 'Порог двойного клика (мс)',
-        doubleClickHelp: 'Максимальный интервал между кликами для регистрации двойного клика. Стандартно: 150-250мс.',
-        reverseWindowLabel: 'Окно реверса колеса (мс)',
-        reverseWindowHelp: 'Если направление меняется быстрее этого окна — фиксируем реверс.',
-        doubleClicksLMB: 'Даббл-клики LMB:',
-        doubleClicksMMB: 'Даббл-клики MMB:',
-        doubleClicksRMB: 'Даббл-клики RMB:',
-        wheelStepsCount: 'Кол-во шагов колеса:',
-        wheelReversalsCount: 'Реверсы колеса:',
-        hintLeftButton: 'Левая кнопка:',
-        hintLeftText: 'быстро кликайте для теста двойного клика',
-        hintMiddleButton: 'Средняя кнопка:',
-        hintMiddleText: 'проверьте работу колесика как кнопки',
-        hintRightButton: 'Правая кнопка:',
-        hintRightText: 'контекстное меню отключено',
-        hintWheel: 'Колесо:',
-        hintWheelText: 'меняйте направление для теста реверсов'
-      },
-      en: {
-        title: 'Mouse & Keyboard Tester',
-        clear: '🗑️ Clear',
-        export: '📥 Export',
-        lightTheme: '☀️ Light',
-        darkTheme: '🌙 Dark',
-        lang: '🇺🇸 English',
-        modeMouseTest: '🖱️ Mouse',
-        modeKeyboardTest: '⌨️ Keyboard',
-        doubleClickSpeed: 'Double Click Speed:',
-        ms: 'ms',
-        wheelSettings: 'Wheel Settings:',
-        reversalWindow: 'Reversal Window:',
-        mouseButtons: 'Mouse Buttons',
-        wheelScroll: 'Wheel Scroll',
-        reversals: 'Reversals',
-        keyboard: 'Keyboard',
-        logs: 'Logs (last 1000)',
-        time: 'Time',
-        event: 'Event',
-        details: 'Details',
-        noEvents: 'No events — start testing.',
-        leftClick: 'LMB',
-        middleClick: 'MMB',
-        rightClick: 'RMB',
-        mouseDown: 'Mouse Down',
-        mouseUp: 'Mouse Up',
-        doubleClick: 'Double Click',
-        wheelUp: 'Wheel Up',
-        wheelDown: 'Wheel Down',
-        wheelReversal: 'Wheel Reversal',
-        keyDown: 'Key Down',
-        keyUp: 'Key Up',
-        adBlock: 'Advertisement Block (300x250 / Responsive)',
-        topBanner: 'Advertisement Banner (728x90 / Responsive)',
-        exportTitle: 'Mouse Testing Report',
-        exportDate: 'Date:',
-        exportStats: 'STATISTICS:',
-        exportDoubleClicks: 'Double clicks',
-        exportWheelSteps: 'Wheel steps:',
-        exportWheelReversals: 'Wheel reversals:',
-        exportReversalRate: 'Reversal rate:',
-        exportLogs: 'EVENT LOGS:',
-        parameters: 'Parameters',
-        statistics: 'Statistics',
-        testZone: 'Mouse Test Zone',
-        testZoneDescription: 'Click LMB/MMB/RMB and scroll the wheel. Context menu and auto-scroll are disabled within this zone.',
-        footer: 'All rights reserved.<br>2025',
-        doubleClickThreshold: 'Double click threshold (ms)',
-        doubleClickHelp: 'Maximum interval between clicks to register a double click. Standard: 150-250ms.',
-        reverseWindowLabel: 'Wheel reversal window (ms)',
-        reverseWindowHelp: 'If direction changes faster than this window — register reversal.',
-        doubleClicksLMB: 'Double-clicks LMB:',
-        doubleClicksMMB: 'Double-clicks MMB:',
-        doubleClicksRMB: 'Double-clicks RMB:',
-        wheelStepsCount: 'Wheel steps count:',
-        wheelReversalsCount: 'Wheel reversals:',
-        hintLeftButton: 'Left Button:',
-        hintLeftText: 'click quickly to test double-click',
-        hintMiddleButton: 'Middle Button:',
-        hintMiddleText: 'test wheel as button functionality',
-        hintRightButton: 'Right Button:',
-        hintRightText: 'context menu is disabled',
-        hintWheel: 'Wheel:',
-        hintWheelText: 'change direction to test reversals'
-      }
-    };
-
-    // ------- Elements -------
-    const elDblThreshold = document.getElementById('dbl-threshold');
-    const elRevWindow = document.getElementById('reverse-window');
-
-    const elDblL = document.getElementById('dbl-lmb');
-    const elDblM = document.getElementById('dbl-mmb');
-    const elDblR = document.getElementById('dbl-rmb');
-    const elWheelTotal = document.getElementById('wheel-total');
-    const elWheelRev = document.getElementById('wheel-rev');
-
-    const testArea = document.getElementById('test-area');
-    const notificationArea = document.getElementById('notification-area');
-
-    const indL = document.getElementById('ind-lmb');
-    const indM = document.getElementById('ind-mmb');
-    const indR = document.getElementById('ind-rmb');
-
-    const wheelLabel = document.getElementById('wheel-label');
-    const arrowUp = document.getElementById('arrow-up');
-    const arrowDown = document.getElementById('arrow-down');
-
-    const logBody = document.getElementById('log-body');
-
-    const btnReset = document.getElementById('btn-reset');
-    const btnExport = document.getElementById('btn-export');
-    const btnTheme = document.getElementById('btn-theme');
-    const btnLang = document.getElementById('btn-lang');
-    const btnMode = document.getElementById('btn-mode');
-
-    // ------- Utils -------
-    const now = () => Date.now();
-    const fmtTime = (ms) => new Date(ms).toLocaleTimeString(currentLang === 'ru' ? 'ru-RU' : 'en-US', { hour12: false });
-
-    function showDoubleClickNotification(buttonLabel) {
-      if (doubleClickNotificationActive) return; // не показываем если уже активно
-      
-      doubleClickNotificationActive = true;
-      const t = translations[currentLang];
-      
-      // Создаем специальное уведомление в центре зоны теста
-      const notification = document.createElement('div');
-      notification.className = 'absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-6 py-3 bg-red-600 text-white rounded-xl text-lg font-bold shadow-2xl z-20 opacity-0 scale-50 transition-all duration-300';
-      notification.textContent = `${t.doubleClick} ${buttonLabel}!`;
-      notification.id = 'doubleclick-notification';
-      
-      testArea.appendChild(notification);
-      
-      // Анимация появления
-      setTimeout(() => {
-        notification.classList.remove('opacity-0', 'scale-50');
-        notification.classList.add('opacity-100', 'scale-100');
-      }, 10);
-      
-      // Убираем уведомление через 1.5 секунды
-      setTimeout(() => {
-        notification.classList.add('opacity-0', 'scale-50');
-        setTimeout(() => {
-          const existingNotification = document.getElementById('doubleclick-notification');
-          if (existingNotification) {
-            existingNotification.remove();
-          }
-          doubleClickNotificationActive = false;
-        }, 300);
-      }, 1500);
-    }
-
-    function showReversalNotification() {
-      if (reversalNotificationActive) return; // не показываем если уже активно
-      
-      reversalNotificationActive = true;
-      const t = translations[currentLang];
-      
-      // Создаем специальное уведомление в центре зоны теста
-      const notification = document.createElement('div');
-      notification.className = 'absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-6 py-3 bg-orange-600 text-white rounded-xl text-lg font-bold shadow-2xl z-20 opacity-0 scale-50 transition-all duration-300';
-      notification.textContent = t.wheelReversal;
-      notification.id = 'reversal-notification';
-      
-      testArea.appendChild(notification);
-      
-      // Анимация появления
-      setTimeout(() => {
-        notification.classList.remove('opacity-0', 'scale-50');
-        notification.classList.add('opacity-100', 'scale-100');
-      }, 10);
-      
-      // Убираем уведомление через 1.5 секунды
-      setTimeout(() => {
-        notification.classList.add('opacity-0', 'scale-50');
-        setTimeout(() => {
-          const existingNotification = document.getElementById('reversal-notification');
-          if (existingNotification) {
-            existingNotification.remove();
-          }
-          reversalNotificationActive = false;
-        }, 300);
-      }, 1500);
-    }
-
-    function showNotification(message, type = 'default') {
-      const notification = document.createElement('div');
-      const bgColor = type === 'doubleclick' ? 'bg-red-600' : 
-                     type === 'reversal' ? 'bg-orange-600' : 'bg-blue-600';
-      
-      notification.className = `px-3 py-2 ${bgColor} text-white rounded-lg text-sm font-medium shadow-lg transform transition-all duration-300 translate-x-full opacity-0`;
-      notification.textContent = message;
-      
-      notificationArea.appendChild(notification);
-      
-      // Animate in
-      setTimeout(() => {
-        notification.classList.remove('translate-x-full', 'opacity-0');
-      }, 10);
-      
-      // Animate out and remove
-      setTimeout(() => {
-        notification.classList.add('translate-x-full', 'opacity-0');
-        setTimeout(() => {
-          if (notification.parentNode) {
-            notification.parentNode.removeChild(notification);
-          }
-        }, 300);
-      }, 2000);
-    }
-
-    function playNotificationSound(type) {
-      try {
-        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        const oscillator = audioContext.createOscillator();
-        const gainNode = audioContext.createGain();
-        
-        oscillator.connect(gainNode);
-        gainNode.connect(audioContext.destination);
-        
-        // Разные частоты для разных типов событий
-        const frequency = type === 'doubleclick' ? 800 : type === 'reversal' ? 600 : 500;
-        oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
-        oscillator.type = 'sine';
-        
-        // Короткий звук
-        gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
-        
-        oscillator.start(audioContext.currentTime);
-        oscillator.stop(audioContext.currentTime + 0.1);
-      } catch (e) {
-        // Звук не критичен, игнорируем ошибки
-      }
-    }
-
-    function updateInterface() {
-      const t = translations[currentLang];
-      
-      // Обновляем заголовок
-      document.querySelector('h1').textContent = t.title;
-      
-      // Обновляем кнопки
-      btnReset.textContent = t.clear;
-      btnExport.textContent = t.export;
-      btnLang.textContent = t.lang;
-      btnMode.textContent = testMode === 'mouse' ? t.modeMouseTest : t.modeKeyboardTest;
-      
-      // Обновляем кнопку темы
-      if (isDarkTheme) {
-        btnTheme.textContent = t.lightTheme;
-      } else {
-        btnTheme.textContent = t.darkTheme;
-      }
-      
-      // Обновляем заголовки секций
-      const h2Elements = document.querySelectorAll('h2');
-      if (h2Elements.length >= 4) {
-        h2Elements[0].textContent = t.parameters;  // Параметры
-        h2Elements[1].textContent = t.statistics;  // Статистика
-        h2Elements[2].textContent = t.testZone;    // Зона теста мыши
-        h2Elements[3].textContent = t.logs;        // Логи
-      }
-      
-      // Обновляем описание зоны теста
-      const testZoneDesc = document.querySelector('#test-area p');
-      if (testZoneDesc) {
-        testZoneDesc.textContent = t.testZoneDescription;
-      }
-      
-      // Обновляем подсказки (теперь они в последней сетке)
-      const hints = document.querySelectorAll('#test-area .bg-slate-800\\/50 .grid div');
-      if (hints.length >= 4) {
-        hints[0].innerHTML = `💡 <strong>${t.hintLeftButton}</strong> ${t.hintLeftText}`;
-        hints[1].innerHTML = `💡 <strong>${t.hintMiddleButton}</strong> ${t.hintMiddleText}`;
-        hints[2].innerHTML = `💡 <strong>${t.hintRightButton}</strong> ${t.hintRightText}`;
-        hints[3].innerHTML = `💡 <strong>${t.hintWheel}</strong> ${t.hintWheelText}`;
-      }
-      
-      // Обновляем индикаторы кнопок мыши
-      const lmbIndicator = document.querySelector('#ind-lmb span');
-      const mmbIndicator = document.querySelector('#ind-mmb span');
-      const rmbIndicator = document.querySelector('#ind-rmb span');
-      if (lmbIndicator) lmbIndicator.textContent = t.leftClick;
-      if (mmbIndicator) mmbIndicator.textContent = t.middleClick;
-      if (rmbIndicator) rmbIndicator.textContent = t.rightClick;
-
-      // Обновляем заголовки таблицы
-      const tableHeaders = document.querySelectorAll('th');
-      if (tableHeaders.length >= 3) {
-        tableHeaders[0].textContent = t.time;
-        tableHeaders[1].textContent = t.event;
-        tableHeaders[2].textContent = t.details;
-      }
-      
-      // Обновляем верхний баннер
-      const topBannerTexts = document.querySelectorAll('.bg-slate-800\\/60');
-      if (topBannerTexts.length >= 2) {
-        topBannerTexts[0].textContent = t.topBanner; // верхний баннер
-        topBannerTexts[1].textContent = t.adBlock;   // нижний блок
-      }
-      
-      // Обновляем footer
-      const footerText = document.querySelector('footer p');
-      if (footerText) {
-        footerText.innerHTML = t.footer;
-      }
-      
-      // Обновляем лейблы параметров
-      const dblThresholdInput = document.querySelector('input[id="dbl-threshold"]');
-      if (dblThresholdInput && dblThresholdInput.previousElementSibling) {
-        dblThresholdInput.previousElementSibling.textContent = t.doubleClickThreshold;
-      }
-      
-      const reverseWindowInput = document.querySelector('input[id="reverse-window"]');
-      if (reverseWindowInput && reverseWindowInput.previousElementSibling) {
-        reverseWindowInput.previousElementSibling.textContent = t.reverseWindowLabel;
-      }
-      
-      // Обновляем подсказки
-      const dblThresholdHelp = document.querySelector('input[id="dbl-threshold"]')?.nextElementSibling;
-      if (dblThresholdHelp) {
-        dblThresholdHelp.textContent = t.doubleClickHelp;
-      }
-      
-      const reverseWindowHelp = document.querySelector('input[id="reverse-window"]')?.nextElementSibling;
-      if (reverseWindowHelp) {
-        reverseWindowHelp.textContent = t.reverseWindowHelp;
-      }
-      
-      // Обновляем статистику
-      const statLabels = document.querySelectorAll('li span:first-child');
-      if (statLabels.length >= 5) {
-        statLabels[0].textContent = t.doubleClicksLMB;
-        statLabels[1].textContent = t.doubleClicksMMB;
-        statLabels[2].textContent = t.doubleClicksRMB;
-        statLabels[3].textContent = t.wheelStepsCount;
-        statLabels[4].textContent = t.wheelReversalsCount;
-      }
-      
-      // Обновляем счетчики двойных кликов
-      updateDoubleCounts();
-      
-      // Перерендерим логи
-      renderLogs();
-    }
-
-    function pushLog(item) {
-      logs.unshift(item);
-      if (logs.length > 1000) logs.pop();
-      renderLogs();
-    }
-
-    function renderLogs() {
-      const t = translations[currentLang];
-      if (logs.length === 0) {
-        logBody.innerHTML = `<tr><td class="py-2 text-slate-500 text-center" colspan="3">${t.noEvents}</td></tr>`;
-        return;
-      }
-      const rows = logs.map((l) => {
-        const { event, details, isSpecial } = formatLogEvent(l);
-        const rowClass = isSpecial ? 'border-t border-slate-800/60 bg-red-900/20' : 'border-t border-slate-800/60';
-        const textClass = isSpecial ? 'text-red-300' : 'text-slate-300';
-        return `<tr class="${rowClass}">
-          <td class="py-1 font-mono text-xs text-center w-20">${fmtTime(l.t)}</td>
-          <td class="py-1 text-center w-24 ${isSpecial ? 'text-red-400 font-semibold' : ''}">${event}</td>
-          <td class="py-1 text-center ${textClass} break-words">${details}</td>
-        </tr>`;
-      }).join('');
-      logBody.innerHTML = rows;
-    }
-
-    function updateDoubleCounts() {
-      const t = translations[currentLang];
-      // Инициализируем счетчики с правильными ключами для текущего языка
-      if (!doubleCounts[t.leftClick]) {
-        doubleCounts[t.leftClick] = 0;
-        doubleCounts[t.middleClick] = 0;
-        doubleCounts[t.rightClick] = 0;
-      }
-    }
-
-    function updateStats() {
-      const t = translations[currentLang];
-      elDblL.textContent = String(doubleCounts[t.leftClick] || 0);
-      elDblM.textContent = String(doubleCounts[t.middleClick] || 0);
-      elDblR.textContent = String(doubleCounts[t.rightClick] || 0);
-      elWheelTotal.textContent = String(wheelStats.total);
-      elWheelRev.textContent = String(wheelStats.reversals);
-    }
-
-    function setIndicator(el, active) {
-      el.classList.toggle('border-emerald-500', active);
-      el.classList.toggle('bg-emerald-500/10', active);
-      const dot = el.querySelector('span.size-3');
-      if (dot) {
-        dot.classList.toggle('bg-emerald-500', active);
-        dot.classList.toggle('bg-slate-700', !active);
-      }
-    }
-
-    function setWheelArrow(dir) {
-      arrowUp.classList.toggle('border-emerald-500', dir === 'up');
-      arrowUp.classList.toggle('bg-emerald-500/10', dir === 'up');
-      arrowDown.classList.toggle('border-emerald-500', dir === 'down');
-      arrowDown.classList.toggle('bg-emerald-500/10', dir === 'down');
-      
-      if (dir === 'idle') {
-        arrowUp.classList.add('border-slate-800','bg-slate-900');
-        arrowDown.classList.add('border-slate-800','bg-slate-900');
-      }
-    }
-
-    function resetAll() {
-      logs.length = 0;
-      const t = translations[currentLang];
-      doubleCounts[t.leftClick] = doubleCounts[t.middleClick] = doubleCounts[t.rightClick] = 0;
-      wheelStats.reversals = 0; wheelStats.total = 0;
-      renderLogs(); updateStats();
-    }
-
-    // ------- Event Handlers -------
-    elDblThreshold.addEventListener('input', () => {
-      dblThresholdMs = parseInt(elDblThreshold.value || '0', 10);
-    });
-
-    elRevWindow.addEventListener('input', () => {
-      reverseWindowMs = parseInt(elRevWindow.value || '0', 10);
-    });
-
-    btnReset.addEventListener('click', resetAll);
-
-    btnExport.addEventListener('click', () => {
-      // Создаем текстовый отчет
-      const reversedLogs = [...logs].reverse();
-      const t = translations[currentLang];
-      let textContent = `${t.exportTitle}\n`;
-      textContent += `${t.exportDate} ${new Date().toLocaleString(currentLang === 'ru' ? 'ru-RU' : 'en-US')}\n`;
-      textContent += `=====================================\n\n`;
-      
-      textContent += `${t.exportStats}\n`;
-      textContent += `- ${t.exportDoubleClicks} ${t.leftClick}: ${doubleCounts[t.leftClick] || 0}\n`;
-      textContent += `- ${t.exportDoubleClicks} ${t.middleClick}: ${doubleCounts[t.middleClick] || 0}\n`;
-      textContent += `- ${t.exportDoubleClicks} ${t.rightClick}: ${doubleCounts[t.rightClick] || 0}\n`;
-      textContent += `- ${t.exportWheelSteps} ${wheelStats.total}\n`;
-      textContent += `- ${t.exportWheelReversals} ${wheelStats.reversals}\n`;
-      const rate = wheelStats.total ? (100 * wheelStats.reversals / wheelStats.total) : 0;
-      textContent += `- ${t.exportReversalRate} ${rate.toFixed(1)}%\n\n`;
-      
-      textContent += `${t.exportLogs}\n`;
-      textContent += `${t.time}\t\t${t.event}\t\t${t.details}\n`;
-      textContent += `-----------------------------------------------\n`;
-      
-      reversedLogs.forEach(log => {
-        const { event, details } = formatLogEvent(log);
-        textContent += `${fmtTime(log.t)}\t\t${event}\t\t${details}\n`;
-      });
-      
-      const blob = new Blob([textContent], { type: 'text/plain;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `mouse_test_${new Date().toISOString().replace(/[:.]/g, '-')}.txt`;
-      a.click();
-      URL.revokeObjectURL(url);
-    });
-
-    function forceThemeUpdate() {
-      // Принудительно перерисовываем страницу для применения темы
-      const body = document.body;
-      if (isDarkTheme) {
-        body.classList.remove('light-theme');
-        body.style.backgroundColor = 'rgb(2 6 23)';
-        body.style.color = 'rgb(226 232 240)';
-      } else {
-        body.classList.add('light-theme');
-        body.style.backgroundColor = 'rgb(248 250 252)';
-        body.style.color = 'rgb(15 23 42)';
-      }
-      
-      // Принудительно обновляем все элементы
-      setTimeout(() => {
-        document.querySelectorAll('*').forEach(el => {
-          if (el.style) el.style.display = el.style.display || '';
-        });
-      }, 10);
-    }
-
-    btnTheme.addEventListener('click', () => {
-      isDarkTheme = !isDarkTheme;
-      // Сохраняем выбор в localStorage
-      localStorage.setItem('mouseTestTheme', isDarkTheme ? 'dark' : 'light');
-      // Принудительно обновляем тему
-      forceThemeUpdate();
-      // Обновляем весь интерфейс включая кнопку темы
-      updateInterface();
-    });
-
-    btnLang.addEventListener('click', () => {
-      currentLang = currentLang === 'ru' ? 'en' : 'ru';
-      localStorage.setItem('mouseTestLang', currentLang);
-      updateInterface();
-    });
-
-    btnMode.addEventListener('click', () => {
-      testMode = testMode === 'mouse' ? 'keyboard' : 'mouse';
-      localStorage.setItem('mouseTestMode', testMode);
-      updateInterface();
-    });
-
-    function buttonLabel(button) {
-      const t = translations[currentLang];
-      return button === 0 ? t.leftClick : button === 1 ? t.middleClick : t.rightClick;
-    }
-
-    function onMouseDown(e) {
-      const t = now();
-      const btn = e.button;
-      const prev = lastDown[btn];
-      const delta = t - prev;
-      if (prev && delta <= dblThresholdMs) {
-        const label = buttonLabel(btn);
-        doubleCounts[label]++;
-        // Не добавляем двойной клик в логи, только показываем уведомление в зоне теста
-        showDoubleClickNotification(label);
-        updateStats();
-      } else {
-        pushLog({ t, type: 'click-down', details: { button: buttonLabel(btn) } });
-      }
-      lastDown[btn] = t;
-      
-      // Visual feedback
-      if (btn === 0) setIndicator(indL, true);
-      else if (btn === 1) setIndicator(indM, true);
-      else if (btn === 2) setIndicator(indR, true);
-    }
-
-    function onMouseUp(e) {
-      const t = now();
-      const btn = e.button;
-      pushLog({ t, type: 'click-up', details: { button: buttonLabel(btn) } });
-      
-      // Visual feedback
-      if (btn === 0) setIndicator(indL, false);
-      else if (btn === 1) setIndicator(indM, false);
-      else if (btn === 2) setIndicator(indR, false);
-    }
-
-    function formatLogEvent(log) {
-      let event = '';
-      let details = '';
-      let isSpecial = false; // для выделения красным
-      const t = translations[currentLang];
-      
-      switch (log.type) {
-        case 'click-down':
-          event = log.details.button;
-          details = t.mouseDown;
-          break;
-        case 'click-up':
-          event = log.details.button;
-          details = t.mouseUp;
-          break;
-        case 'wheel':
-          event = currentLang === 'ru' ? 'Колесо' : 'Wheel';
-          details = log.details.dir === 'up' ? t.wheelUp : t.wheelDown;
-          break;
-        case 'info':
-          event = currentLang === 'ru' ? 'Система' : 'System';
-          details = log.details.message;
-          break;
-        default:
-          event = log.type;
-          details = JSON.stringify(log.details || {});
-      }
-      
-      return { event, details, isSpecial };
-    }
-
-    function onWheel(e) {
-      // prevent page scroll while inside test area
-      e.preventDefault();
-      e.stopPropagation();
-      const t = now();
-      const sign = Math.sign(e.deltaY); // >0 = down, <0 = up
-      const dir = sign > 0 ? 'down' : sign < 0 ? 'up' : 'idle';
-
-      if (sign !== 0) {
-        wheelStats.total++;
-        updateStats();
-      }
-
-      const last = lastWheel;
-      const since = t - last.t;
-      if (last.sign !== 0 && sign !== 0 && sign !== last.sign && since <= reverseWindowMs) {
-        wheelStats.reversals++;
-        // Не добавляем реверс в логи, только показываем уведомление в зоне теста
-        showReversalNotification();
-        updateStats();
-      } else if (sign !== 0) {
-        pushLog({ t, type: 'wheel', details: { dir, deltaY: e.deltaY } });
-      }
-
-      lastWheel.t = t; lastWheel.sign = sign;
-
-      // Visual feedback
-      setWheelArrow(dir);
-      
-      // Highlight test area during wheel events
-      testArea.classList.add('ring-2', 'ring-emerald-500/50', 'bg-emerald-900/10');
-      clearTimeout(wheelIdleTimer);
-      wheelIdleTimer = setTimeout(() => {
-        setWheelArrow('idle');
-        testArea.classList.remove('ring-2', 'ring-emerald-500/50', 'bg-emerald-900/10');
-      }, 200);
-    }
-
-    // ------- Event Listeners -------
-    testArea.addEventListener('mousedown', onMouseDown);
-    testArea.addEventListener('mouseup', onMouseUp);
-    testArea.addEventListener('wheel', onWheel, { passive: false });
-    testArea.addEventListener('contextmenu', (e) => e.preventDefault());
-
-    testArea.addEventListener('mouseleave', () => {
-      setIndicator(indL, false);
-      setIndicator(indM, false);
-      setIndicator(indR, false);
-      setWheelArrow('idle');
-      testArea.blur();
-    });
-
-    // Global wheel handler to prevent scrolling when not in test area
-    window.addEventListener('wheel', (e) => {
-      // Only prevent default if we're not in a scrollable container
-      const target = e.target;
-      const testAreaContains = testArea.contains(target);
-      const isScrollable = target.closest('.overflow-auto, .overflow-y-auto, .overflow-scroll');
-      
-      if (testAreaContains && !isScrollable) {
-        e.preventDefault();
-      }
-    }, { passive: false });
-
-    // Accessibility: focus test area on load for immediate testing
-    window.addEventListener('load', () => { 
-      testArea.focus(); 
-      
-      // Инициализация темы из localStorage
-      const savedTheme = localStorage.getItem('mouseTestTheme');
-      if (savedTheme === 'light') {
-        isDarkTheme = false;
-      }
-      // Применяем тему принудительно
-      forceThemeUpdate();
-      
-      // Инициализация языка из localStorage
-      const savedLang = localStorage.getItem('mouseTestLang');
-      if (savedLang && (savedLang === 'ru' || savedLang === 'en')) {
-        currentLang = savedLang;
-      }
-      
-      // Инициализация режима из localStorage
-      const savedMode = localStorage.getItem('mouseTestMode');
-      if (savedMode && (savedMode === 'mouse' || savedMode === 'keyboard')) {
-        testMode = savedMode;
-      }
-      
-      // Инициализируем счетчики двойных кликов
-      updateDoubleCounts();
-      
-      // Обновляем весь интерфейс с правильным языком и темой
-      updateInterface();
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
